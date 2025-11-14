@@ -1,0 +1,63 @@
+[
+  {
+    "id": 1,
+    "title": "Новый пост из Node.js",
+    "author": "Анастасия"
+  },
+  {
+    "id": 2,
+    "title": "Новый пост из Node.js",
+    "author": "Анастасия"
+  },
+  {
+    "id": 3,
+    "title": "Новый пост из Node.js",
+    "author": "Анастасия",
+    "example": "Example text"
+  },
+  {
+    "id": 4,
+    "title": "Новый пост из Node.js",
+    "author": "Анастасия",
+    "example": "Example text"
+  },
+  {
+    "id": 5,
+    "title": "Новый пост из Node.js",
+    "author": "Анастасия",
+    "example": "Example text"
+  },
+  {
+    "id": 6,
+    "title": "Тест через Postman",
+    "content": "Это работает!",
+    "author": "Анастасия",
+    "createdAt": "2025-11-09T21:40:44.486Z"
+  },
+  {
+    "id": 7,
+    "title": "Тест",
+    "content": "",
+    "author": "Я",
+    "createdAt": "2025-11-10T13:35:27.937Z"
+  },
+  {
+    "id": 8,
+    "title": "Тест",
+    "content": "",
+    "author": "Я",
+    "createdAt": "2025-11-10T13:35:46.570Z"
+  },
+  {
+    "title": "Тест",
+    "author": "Яамwefcув"
+  },
+  {
+    "title": "Тест",
+    "author": "Яамwefcув"
+  },
+  {
+    "title": "Тест",
+    "author": "Яамwefcув"
+  }
+]
