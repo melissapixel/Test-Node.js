@@ -1,4 +1,4 @@
-// Прочитать JSON-файл и отправить его как JSON
+// Прочитать JSON-файл, отправить его как JSON
 
 const http = require('http'); // для создания веб-сервера
 const fs = require('fs').promises; // для файлов
