@@ -1,27 +1,28 @@
-// Прочитать JSON-файл и отправить его как JSON
+// Отправка разных ответов в зависимости от данных. Научиться отправлять разные статусы и сообщения, в зависимости от того, есть ли файл.
+
 
 const http = require('http'); // для создания веб-сервера
 const fs = require('fs').promises; // для файлов
 
-// Создание сервера
 const server = http.createServer(async(req, res) => {
 
     if (req.url === '/' && req.method === 'GET') {
-        // Запускаем операциию чтения
+         // Запускаем операциию чтения
         const posts = await fs.readFile('posts.json', 'utf8');
         // заголовок
         res.setHeader('Content-Type', 'application/json');
+        res.writeHead(200);
         res.end(posts);
 
     } else {
         // 404
         res.writeHead(404);
-        res.end('Not found');
+        res.end('error: "Посты не найдены"');
     }
-});
+    
+})
 
-
-// 4. Запускаем сервер
+// Запускаем сервер
 const PORT = 3000;
 server.listen(PORT, () => {
   console.log(`✅ Сервер запущен на http://localhost:${PORT}`);
