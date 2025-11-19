@@ -17,11 +17,11 @@ async function getAllPosts() {
     const res = await pool.query('SELECT * FROM posts ORDER BY created_at DESC');
     return res.rows;
 }
-async function createPost(title, content) { 
+async function createPost(title, content, author) { 
     // Параметризованный запрос — безопасен от SQL-инъекций!
     const res = await pool.query(
-        'INSERT INTO posts (title, content) VALUES ($1, $2) RETURNING *',
-        [title, content]
+        'INSERT INTO posts (title, content, author) VALUES ($1, $2, $3) RETURNING *',
+        [title, content, author]
     );
     return res.rows[0];
  }
@@ -30,8 +30,8 @@ async function createPost(title, content) {
 function escapeHtml(text) {
     return String(text || '')
     .replace(/&/g, '&amp;')
-    .replace(/</g, '<')
-    .replace(/>/g, '>')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 }
 
@@ -41,6 +41,7 @@ function renderPostsPage(posts) {
     <div class="post">
       <h2>${escapeHtml(p.title)}</h2>
       <p>${escapeHtml(p.content)}</p>
+      <p>${escapeHtml(p.author)}</p>
       <small>${new Date(p.created_at).toLocaleString()}</small>
     </div>
   `).join('');
@@ -61,6 +62,7 @@ function renderPostsPage(posts) {
     <hr>
     <form method="POST" action="/posts" style="margin-top:30px;">
       <input name="title" placeholder="Заголовок" style="width:100%; padding:8px; margin:4px 0; background:#2d2d2d; color:white; border:1px solid #444;">
+      <input name="author" placeholder="Автор" style="width:100%; padding:8px; margin:4px 0; background:#2d2d2d; color:white; border:1px solid #444;">   
       <textarea name="content" placeholder="Текст поста" rows="4" style="width:100%; padding:8px; background:#2d2d2d; color:white; border:1px solid #444;"></textarea>
       <button type="submit" style="background:#03dac6; color:black; border:none; padding:8px 16px; cursor:pointer;">Опубликовать</button>
     </form>
@@ -94,6 +96,7 @@ const server = http.createServer(async (req, res) => {
         // Парсим данные формы (application/x-www-form-urlencoded)
         const params = new URLSearchParams(body); // для того, чтобы получить обьект
         const title = params.get('title')?.trim(); // params.get('title') может вернуть null (если поля нет).
+        const author = params.get('author')?.trim();
         const content = params.get('content')?.trim();
 
         if (!title || !content) {
@@ -101,7 +104,7 @@ const server = http.createServer(async (req, res) => {
           return res.end('Заголовок и содержание обязательны');
         }
 
-        await createPost(title, content);
+        await createPost(title, content, author);
 
         // Перенаправляем на /posts (GET)
         // Код 302 — это временное перенаправление.
