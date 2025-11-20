@@ -8,4 +8,5 @@ const pool = new Pool({
   port: process.env.DB_PORT || 5432,
 });
 
-module.exports = { pool };
+// Экспортируем САМ pool
+module.exports = pool;
