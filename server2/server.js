@@ -5,18 +5,7 @@ const http = require('http'); // для создания веб-сервера
 const pool = require('./db/connection');
 
 // === 2. Функции для работы с БД ===
-async function getAllPosts() { 
-    const res = await pool.query('SELECT * FROM posts ORDER BY created_at DESC');
-    return res.rows;
-}
-async function createPost(title, content, author) { 
-    // Параметризованный запрос — безопасен от SQL-инъекций!
-    const res = await pool.query(
-        'INSERT INTO posts (title, content, author) VALUES ($1, $2, $3) RETURNING *',
-        [title, content, author]
-    );
-    return res.rows[0];
- }
+const { getAllPosts, createPost } = require('./db/postRepository');
 
 // === 4. Вспомогательные функции ===
 function escapeHtml(text) {
