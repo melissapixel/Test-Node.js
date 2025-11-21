@@ -17,21 +17,13 @@ const http = require('http'); // для создания веб-сервера
 // // === 3. Генерация HTML ===
 // const { renderPostsPage } = require('./presentation/postView');
 
-// === 5. HTTP-сервер и маршруты ===
-const { handleList, handleCreate } = require('./controllers/postController');
+// // === 5. HTTP-сервер и маршруты ===
+// const { handleList, handleCreate } = require('./controllers/postController');
 
-const server = http.createServer(async (req, res) => {
-  if (req.url === '/posts' && req.method === 'GET') { 
-    return handleList(req, res);
-   }
+const routeRequest = require('./routes')
 
-  if (req.url === '/posts' && req.method === 'POST') { 
-    return handleCreate(req, res);
-   }
-  
-   // --- Любые другие запросы: 404 ---
-  res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
-  res.end('Страница не найдена');
+const server = http.createServer((req, res) => {
+  routeRequest(req, res);
 });
 
 // Запускаем сервер
