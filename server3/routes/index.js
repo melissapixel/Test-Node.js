@@ -2,7 +2,7 @@ const { handleList, handleCreate, handleHome } = require('../controllers/postCon
 
 const routes = [
   { method: 'GET', path: '/', handler: handleHome },
-  { method: 'GET',  path: '/posts', handler: handleList }, // Если пришёл GET-запрос на /posts — вызови функцию handleList
+  { method: 'GET',  path: '/read-posts', handler: handleList }, // Если пришёл GET-запрос на /posts — вызови функцию handleList
   { method: 'POST', path: '/posts', handler: handleCreate }
 ];
 
