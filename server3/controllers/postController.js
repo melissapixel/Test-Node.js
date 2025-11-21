@@ -1,6 +1,16 @@
 const { getAllPosts, createPost } = require('../db/postRepository');
 const { renderPostsPage } = require('../presentation/postView');
 
+async function handleHome(req, res) {
+  try {
+    // Перенаправляем на /posts (GET)
+    // Код 302 — это временное перенаправление.
+    res.writeHead(302, { 'Location': '/posts' });
+    res.end();
+  } catch (err) {
+    res.writeHead(500).end('DB error');
+  }
+}
 
 async function handleList(req, res) {
   try {
@@ -47,4 +57,4 @@ async function handleCreate(req, res) {
 }
 
 
-module.exports = { handleList, handleCreate };
+module.exports = { handleList, handleCreate, handleHome };

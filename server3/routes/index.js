@@ -1,6 +1,7 @@
-const { handleList, handleCreate } = require('../controllers/postController');
+const { handleList, handleCreate, handleHome } = require('../controllers/postController');
 
 const routes = [
+  { method: 'GET', path: '/', handler: handleHome },
   { method: 'GET',  path: '/posts', handler: handleList }, // Если пришёл GET-запрос на /posts — вызови функцию handleList
   { method: 'POST', path: '/posts', handler: handleCreate }
 ];
