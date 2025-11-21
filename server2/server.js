@@ -6,16 +6,16 @@ const http = require('http'); // для создания веб-сервера
 // каждый файл импортирует только то, что использует напрямую.
 // поэтому с 1 до 5 можно удалить
 // === 1. Подключение к БД ===
-const pool = require('./db/connection');
+// const pool = require('./db/connection');
 
-// === 2. Функции для работы с БД ===
-const { getAllPosts, createPost } = require('./db/postRepository');
+// // === 2. Функции для работы с БД ===
+// const { getAllPosts, createPost } = require('./db/postRepository');
 
-// === 4. Вспомогательные функции ===
-const { escapeHtml } = require('./presentation/postView');
+// // === 4. Вспомогательные функции ===
+// const { escapeHtml } = require('./presentation/postView');
 
-// === 3. Генерация HTML ===
-const { renderPostsPage } = require('./presentation/postView');
+// // === 3. Генерация HTML ===
+// const { renderPostsPage } = require('./presentation/postView');
 
 // === 5. HTTP-сервер и маршруты ===
 const { handleList, handleCreate } = require('./controllers/postController');
