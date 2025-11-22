@@ -43,5 +43,19 @@ function escapeHtml(text) {
     .replace(/"/g, '&quot;');
 }
 
+function renderPostPage(post) { 
+    return `
+    <!DOCTYPE html>
+    <html>
+    <head><meta charset="utf-8"><title>${(post.title)}</title></head>
+    <body>
+      <h1>${(post.title)}</h1>
+      <p>Автор: ${(post.author)}</p>
+      <div>${(post.content)}</div>
+      <a href="/read-posts">← Назад к списку</a>
+    </body>
+  </html>`;
+}
+
 // делаем экспорт наших вынесенных функций
-module.exports = { renderPostsPage, escapeHtml };
+module.exports = { renderPostsPage, escapeHtml, renderPostPage };

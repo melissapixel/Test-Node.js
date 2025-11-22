@@ -1,5 +1,5 @@
-const { getAllPosts, createPost } = require('../db/postRepository');
-const { renderPostsPage } = require('../presentation/postView');
+const { getAllPosts, createPost, getPostById } = require('../db/postRepository');
+const { renderPostsPage, renderPostPage } = require('../presentation/postView');
 
 async function handleHome(req, res) {
   try {
@@ -56,5 +56,21 @@ async function handleCreate(req, res) {
     return; // гарантирует, что код ниже не выполнится (особенно важно при валидации).
 }
 
+async function handlePostbyId(req, res, id) {
+ try {
+    const post = await getPostById(id); // из репозитория
+    if (!post) {
+      res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+      return res.end('Пользователь не найден');
+    }
+    const html = renderPostPage(post);
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end(html);
+  } catch (err) {
+    console.error(err);
+    res.writeHead(500).end('Ошибка сервера');
+  }
+}
 
-module.exports = { handleList, handleCreate, handleHome };
+
+module.exports = { handleList, handleCreate, handleHome, handlePostbyId };

@@ -17,5 +17,12 @@ async function createPost(title, content, author) {
     return res.rows[0];
 }
 
+async function getPostById(id) {
+  // используй параметризованный запрос: SELECT * FROM users WHERE id = $1
+  const res = await pool.query('SELECT * FROM posts WHERE id = $1', [id]);
+  return res.rows[0] || null;
+}
+
+
 // делаем экспорт наших вынесенных функций
-module.exports = { getAllPosts, createPost };
+module.exports = { getAllPosts, createPost, getPostById };
