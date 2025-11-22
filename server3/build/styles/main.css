@@ -1,0 +1,18 @@
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.post {
+  background: rgb(30.75, 30.75, 30.75);
+  padding: 16px;
+  margin: 10px 0;
+  border-radius: 6px;
+}
+.post h2 {
+  color: #bb86fc;
+}
+
+/*# sourceMappingURL=main.css.map */
