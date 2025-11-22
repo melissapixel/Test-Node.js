@@ -1,9 +1,9 @@
 // static/ — традиционное имя для "сырых" файлов
 
-// Переменные — основа удобства!
-$background: #121212;
-$text: #e0e0e0;
-$accent: #bb86fc;
+// 1. Сброс и переменные
+@use 'reset';
+@use 'variables';
+
 
 body {
   background-color: $background;
