@@ -1,24 +1,10 @@
-// static/ — традиционное имя для "сырых" файлов
+// Abstracts (всё, что "инструменты")
+@use 'abstracts/constants';
+@use 'abstracts/functions';
+@use 'abstracts/variables';
 
-// 1. Сброс и переменные
-@use 'reset';
-@use 'variables';
+// Базовые стили и компоненты
+@use 'components/title';
 
-
-body {
-  background-color: $background;
-  color: $text;
-  font-family: Arial, sans-serif;
-  padding: 20px;
-}
-
-.post {
-  background: lighten($background, 5%);
-  padding: 16px;
-  margin: 10px 0;
-  border-radius: 6px;
-
-  h2 {
-    color: $accent; // вложенность — одно из главных преимуществ SCSS!
-  }
-}
+@use 'base/base'; // ← он сам знает, что ему нужно
+// ... остальное

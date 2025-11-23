@@ -1,0 +1,29 @@
+@use 'sass:math';
+@use 'constants'; // ← импортируем константы
+
+@function fluid($max: 100, $min: 10, $isEndOfLaptop: false) {
+  $maxViewportWidth: constants.$container-desktop-width;
+  $minViewportWidth: constants.$container-mobile-width;
+
+  @if ($isEndOfLaptop) {
+    $minViewportWidth: constants.$container-laptop-width;
+  }
+
+  $maxSize: math.div($max, 16);
+  $minSize: math.div($min, 16);
+  $maxWidth: math.div($maxViewportWidth, 16);
+  $minWidth: math.div($minViewportWidth, 16);
+
+  $slope: math.div(($maxSize - $minSize), ($maxWidth - $minWidth));
+  $yAxisIntersections: -$minWidth * $slope + $minSize;
+
+  @return clamp(
+    #{$minSize * 1rem},
+    #{$yAxisIntersections * 1rem} + #{$slope * 100vw},
+    #{$maxSize * 1rem}
+  );
+}
+
+@function fluid-to-laptop($max: 100, $min: 10) {
+  @return fluid($max, $min, true);
+}

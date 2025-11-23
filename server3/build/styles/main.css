@@ -1,18 +1,29 @@
-/* Error: Undefined variable.
- *    ,
- * 14 |   background: $bg-primary;
- *    |               ^^^^^^^^^^^
- *    '
- *   static\styles\reset.scss 14:15  @use
- *   static\styles\main.scss 4:1     root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a    \2577 \a 14 \2502    background: $bg-primary;\d\a    \2502                ^^^^^^^^^^^\a    \2575 \a   static\\styles\\reset.scss 14:15  @use\a   static\\styles\\main.scss 4:1     root stylesheet";
+@charset "UTF-8";
+.title {
+  /* базовые стили */
+  display: inline-block;
+  font-family: "Inter", sans-serif;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: clamp(0.875rem, 0.8035714286rem + 0.3571428571vw, 1.125rem);
+  text-align: center;
+  background-color: #1a1a1a;
+  color: #121212;
+  transition: background-color 0.2s ease;
 }
+.title:hover {
+  background-color: rgb(51.5, 51.5, 51.5);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: "Inter", sans-serif, system-ui, sans-serif;
+  line-height: 1.6;
+  font-size: clamp(1rem, 0.9642857143rem + 0.1785714286vw, 1.125rem);
+}
+
+/*# sourceMappingURL=main.css.map */

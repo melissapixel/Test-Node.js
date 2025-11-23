@@ -47,9 +47,13 @@ function renderPostPage(post) {
     return `
     <!DOCTYPE html>
     <html>
-    <head><meta charset="utf-8"><title>${(post.title)}</title></head>
+    <head>
+      <meta charset="utf-8"><title>${(post.title)}</title>
+      <link rel="stylesheet" href="/styles/main.css">
+    </head>
     <body>
-      <h1>${(post.title)}</h1>
+      <h1 class="title">Вот данный пост:</h1>
+      <h2>${(post.title)}</h2>
       <p>Автор: ${(post.author)}</p>
       <div>${(post.content)}</div>
       <a href="/read-posts">← Назад к списку</a>
