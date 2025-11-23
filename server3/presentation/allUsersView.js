@@ -16,9 +16,6 @@ function renderAllUsersPage(users) {
   <head>
     <meta charset="utf-8">
     <title>Посты</title>
-    <style>
-      body { background:#121212; color:#e0e0e0; font-family:Arial; padding:20px; }
-    </style>
   </head>
   <body>
     <h1 style="text-align: center;">All users</h1>

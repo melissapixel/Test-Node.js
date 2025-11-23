@@ -3,12 +3,12 @@ const pool = require('../db/connection');
 
 function renderPostsPage(posts) { 
   const postsHtml = posts.map(p => `
-    <div class="post">
-      <h2>${escapeHtml(p.title)}</h2>
-      <p>${escapeHtml(p.content)}</p>
-      <p>${escapeHtml(p.author)}</p>
+    <article class="post-card">
+      <h2 class="post-card__title">${escapeHtml(p.title)}</h2>
+      <p class="post-card__author">${escapeHtml(p.content)}</p>
+      <p class="post-card__content">${escapeHtml(p.author)}</p>
       <small>${new Date(p.created_at).toLocaleString()}</small>
-    </div>
+    </article>
   `).join('');
 
   return `
@@ -17,19 +17,16 @@ function renderPostsPage(posts) {
   <head>
     <meta charset="utf-8">
     <title>Посты</title>
-    <style>
-      body { background:#121212; color:#e0e0e0; font-family:Arial; padding:20px; }
-    </style>
   </head>
   <body>
-    <h1>Публикации</h1>
+    <h1 class="title">Публикации</h1>
     ${postsHtml}
     <hr>
-    <form method="POST" action="/posts" style="margin-top:30px;">
-      <input name="title" placeholder="Заголовок" style="width:100%; padding:8px; margin:4px 0; background:#2d2d2d; color:white; border:1px solid #444;">
-      <input name="author" placeholder="Автор" style="width:100%; padding:8px; margin:4px 0; background:#2d2d2d; color:white; border:1px solid #444;">   
-      <textarea name="content" placeholder="Текст поста" rows="4" style="width:100%; padding:8px; background:#2d2d2d; color:white; border:1px solid #444;"></textarea>
-      <button type="submit" style="background:#03dac6; color:black; border:none; padding:8px 16px; cursor:pointer;">Опубликовать</button>
+    <form class="form-create__post" method="POST" action="/posts">
+      <input name="title" placeholder="Заголовок">
+      <input name="author" placeholder="Автор">   
+      <textarea name="content" placeholder="Текст поста" rows="4"></textarea>
+      <button type="submit">Опубликовать</button>
     </form>
   </body>
   </html>`;
@@ -49,14 +46,15 @@ function renderPostPage(post) {
     <html>
     <head>
       <meta charset="utf-8"><title>${(post.title)}</title>
-      <link rel="stylesheet" href="/styles/main.css">
     </head>
     <body>
-      <h1 class="title">Вот данный пост:</h1>
-      <h2>${(post.title)}</h2>
-      <p>Автор: ${(post.author)}</p>
-      <div>${(post.content)}</div>
-      <a href="/read-posts">← Назад к списку</a>
+      <h1 class="title">Публикация</h1>
+      <article class="post-card">
+        <h1 class="post-card__title">${post.title}</h1>
+        <span class="post-card__author">Автор: ${post.author}</span>
+        <div class="post-card__content">${post.content}</div>
+        <a href="/read-posts">← Назад к списку</a>
+      </article>
     </body>
   </html>`;
 }
