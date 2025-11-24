@@ -1,5 +1,6 @@
 const { getAllPosts, createPost, getPostById } = require('../db/postRepository');
-const { renderPostsPage, renderPostPage } = require('../presentation/postView');
+const { renderPostsPage, renderPostPage, renderCreatePostForm } = require('../presentation/postView');
+const { wrapInLayout } = require('../views/layout');
 
 async function handleHome(req, res) {
   try {
@@ -15,7 +16,8 @@ async function handleHome(req, res) {
 async function handleList(req, res) {
   try {
     const posts = await getAllPosts();
-    const html = renderPostsPage(posts);
+    const content = renderPostsPage(posts) + renderCreatePostForm(); // контент
+    const html = wrapInLayout(content, 'Публикации'); // ← обёртка со стилями
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.end(html);
   } catch (err) {
@@ -43,9 +45,9 @@ async function handleCreate(req, res) {
 
         await createPost(title, content, author);
 
-        // Перенаправляем на /posts (GET)
+        // Перенаправляем на (GET)
         // Код 302 — это временное перенаправление.
-        res.writeHead(302, { 'Location': '/posts' });
+        res.writeHead(302, { 'Location': '/read-posts' });
         res.end();
       } catch (err) {
         console.error(err);
@@ -63,7 +65,8 @@ async function handlePostbyId(req, res, id) {
       res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
       return res.end('Пользователь не найден');
     }
-    const html = renderPostPage(post);
+    const content = renderPostPage(post);
+    const html = wrapInLayout(content, 'Публикация'); // ← обёртка со стилями
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.end(html);
   } catch (err) {
@@ -71,6 +74,5 @@ async function handlePostbyId(req, res, id) {
     res.writeHead(500).end('Ошибка сервера');
   }
 }
-
 
 module.exports = { handleList, handleCreate, handleHome, handlePostbyId };

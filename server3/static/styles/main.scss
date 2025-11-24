@@ -1,0 +1,15 @@
+// Меняем цвета из бутсрапа
+// $primary: #4dabf7;
+// $body-bg: #121212;
+// $body-color: #e0e0e0;
+
+// Подключаем ВЕСЬ Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+
+
+
+// Кастомные цвета
+.bg-darker {
+  background-color: #0d0d0d !important;
+}

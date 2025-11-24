@@ -1,5 +1,7 @@
 // подключаем бд
 const pool = require('../db/connection');
+// подключаем доп.блоки
+const { wrapInLayout } = require('../views/layout');
 
 function renderAllUsersPage(users) { 
   const usersHtml = users.map(u => `

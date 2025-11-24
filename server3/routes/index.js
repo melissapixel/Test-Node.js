@@ -2,7 +2,7 @@ const { handleList, handleCreate, handleHome, handlePostbyId } = require('../con
 const { handleListUsers } = require('../controllers/userController');
 
 const routes = [
-  { method: 'GET', path: '/', handler: handleHome },
+  { method: 'GET', path:  '/', handler: handleHome },
   { method: 'GET',  path: '/read-posts', handler: handleList }, // Если пришёл GET-запрос на /read-posts — вызови функцию handleList
   { method: 'GET', path: '/read-users', handler: handleListUsers },
   { method: 'GET', prefix: '/post/', handler: handlePostbyId },

@@ -6,15 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "css": "sass static/styles:build/styles",
-    "build:css": "sass static/styles:build/styles --no-source-map",
-    "dev": "sass static/styles:build/styles --watch & node server.js"
+    "build:css": "sass --load-path=node_modules static/styles/main.scss build/styles/main.css",
+    "dev:css": "sass --load-path=node_modules --watch static/styles/main.scss:build/styles/main.css"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "pg": "^8.16.3"
+    "bootstrap": "^5.3.8",
+    "pg": "^8.16.3",
+    "sass": "^1.94.2"
   }
 }

@@ -1,63 +1,72 @@
 // подключаем бд
 const pool = require('../db/connection');
+// подключание шапки и подвала
+const { escapeHtml } = require('../views/layout');
 
-function renderPostsPage(posts) { 
+
+// 1. Только список постов
+function renderPostsPage(posts) {
   const postsHtml = posts.map(p => `
-    <article class="post-card">
-      <h2 class="post-card__title">${escapeHtml(p.title)}</h2>
-      <p class="post-card__author">${escapeHtml(p.content)}</p>
-      <p class="post-card__content">${escapeHtml(p.author)}</p>
-      <small>${new Date(p.created_at).toLocaleString()}</small>
-    </article>
+    <div class="container-fluid px-3 px-md-4 py-2">
+      <div class="card bg-dark text-light border-0">
+        <div class="card-body">
+          <h2 class="card-title fs-4 mb-2">${escapeHtml(p.title)}</h2>
+          <p class="text-muted mb-2">Автор: ${escapeHtml(p.author)}</p>
+          <div class="fs-6">${escapeHtml(p.content)}</div>
+          <small class="text-muted">${new Date(p.created_at).toLocaleString()}</small>
+        </div>
+      </div>
+    </div>
   `).join('');
 
   return `
-  <!DOCTYPE html>
-  <html lang="ru">
-  <head>
-    <meta charset="utf-8">
-    <title>Посты</title>
-  </head>
-  <body>
-    <h1 class="title">Публикации</h1>
-    ${postsHtml}
-    <hr>
-    <form class="form-create__post" method="POST" action="/posts">
-      <input name="title" placeholder="Заголовок">
-      <input name="author" placeholder="Автор">   
-      <textarea name="content" placeholder="Текст поста" rows="4"></textarea>
-      <button type="submit">Опубликовать</button>
-    </form>
-  </body>
-  </html>`;
+    <div class="container-fluid px-3 px-md-4 py-4">
+      <h1 class="text-center mb-4">Публикации</h1>
+      ${postsHtml}
+    </div>
+  `;
 }
 
-function escapeHtml(text) {
-    return String(text || '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+// 2. Только форма создания
+function renderCreatePostForm() {
+  return `
+    <div class="container-fluid px-3 px-md-4 py-4">
+      <div class="card bg-dark text-light border-0" style="max-width: 700px; margin: 0 auto;">
+        <div class="card-body p-4">
+          <h2 class="card-title text-center mb-4">Новая публикация</h2>
+          <form method="POST" action="/read-posts">
+            <div class="mb-3">
+              <input type="text" name="title" class="form-control bg-secondary text-light border-0" placeholder="Заголовок" required>
+            </div>
+            <div class="mb-3">
+              <input type="text" name="author" class="form-control bg-secondary text-light border-0" placeholder="Автор" required>
+            </div>
+            <div class="mb-4">
+              <textarea name="content" class="form-control bg-secondary text-light border-0" placeholder="Текст поста" rows="6" required></textarea>
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary btn-lg">Опубликовать</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  `;
 }
+
 
 function renderPostPage(post) { 
     return `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="utf-8"><title>${(post.title)}</title>
-    </head>
-    <body>
       <h1 class="title">Публикация</h1>
+      
       <article class="post-card">
         <h1 class="post-card__title">${post.title}</h1>
         <span class="post-card__author">Автор: ${post.author}</span>
         <div class="post-card__content">${post.content}</div>
         <a href="/read-posts">← Назад к списку</a>
       </article>
-    </body>
-  </html>`;
+  `;
 }
 
 // делаем экспорт наших вынесенных функций
-module.exports = { renderPostsPage, escapeHtml, renderPostPage };
+module.exports = { renderPostsPage, renderPostPage, renderCreatePostForm };
