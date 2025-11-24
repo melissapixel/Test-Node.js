@@ -17,25 +17,28 @@ function wrapInLayout(content, title = 'Моя платформа') {
   <body class="d-flex flex-column min-vh-100 bg-dark text-light">
     <header class="bg-darker py-3 border-bottom border-secondary">
       <div class="container-fluid px-3 px-md-4">
-        <h1 class="h4 mb-0 text-primary">Моя платформа</h1>
-         <ul class="navbar-nav mr-4">
+        <div class="d-flex justify-content-between align-items-center">
+          <!-- Логотип / Название -->
+          <h1 class="h4 mb-0">
+            <a href="/" class="text-primary text-decoration-none">Моя платформа</a>
+          </h1>
+
+          <!-- Навигация -->
+          <ul class="navbar-nav d-flex flex-row gap-3 mb-0">
             <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+              <a class="nav-link text-light px-2" href="/about">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Portfolio</a>
+              <a class="nav-link text-light px-2" href="/read-posts">Posts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Team</a>
+              <a class="nav-link text-light px-2" href="/read-users">Users</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Posts</a>
+              <a class="nav-link text-light px-2" href="/contact">Contact</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
-            </li>
-        </ul>
-         </div>
+          </ul>
+        </div>
       </div>
     </header>
 
