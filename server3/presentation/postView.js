@@ -27,7 +27,7 @@ function renderPostsPage(posts) {
   `;
 }
 
-// 2. Только форма создания
+// 2. Только форма создания поста
 function renderCreatePostForm() {
   return `
     <div class="container-fluid px-3 px-md-4 py-4">
@@ -54,7 +54,7 @@ function renderCreatePostForm() {
   `;
 }
 
-
+// просмотр одного поста
 function renderPostPage(post) { 
     return `
       <h1 class="title">Публикация</h1>

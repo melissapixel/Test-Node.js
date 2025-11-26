@@ -35,7 +35,7 @@ function wrapInLayout(content, title = 'Моя платформа') {
               <a class="nav-link text-light px-2" href="/read-users">Users</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-light px-2" href="/contact">Contact</a>
+              <a class="nav-link text-light px-2" href="/register">Registration</a>
             </li>
           </ul>
         </div>
