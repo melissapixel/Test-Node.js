@@ -1,7 +1,8 @@
 function renderAllUsersPage(users) { 
   const usersHtml = users.map(u => `
     <div class="post">
-      <h2>${(u.usernsme)}</h2>
+      <h2>${(u.username)}</h2>
+      <img src="${(u.avatar_url)}" style="width: 100px; height=100px; border-radius:50%" alt="avatar">
       <p>${(u.email)}</p>
       <small>${new Date(u.created_at).toLocaleString()}</small>
     </div>

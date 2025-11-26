@@ -25,9 +25,31 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
       return res.end('Файл не найден');
     }
+  } 
+
+  if (req.url.startsWith('/images/')) {
+    const filePath = path.join(__dirname, 'public', req.url);
+
+    try {
+      const data = await fs.readFile(filePath);
+      let contentType = 'image/png'; // по умолчанию
+
+      if (filePath.endsWith('.jpg') || filePath.endsWith('.jpeg')) {
+        contentType = 'image/jpeg';
+      } else if (filePath.endsWith('.gif')) {
+        contentType = 'image/gif';
+      }
+
+      res.writeHead(200, { 'Content-Type': contentType });
+      return res.end(data);
+    } catch (err) {
+      console.error('Изображение не найдено:', filePath);
+      res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+      return res.end('Изображение не найдено');
+    }
   }
 
-  // 🔹 Всё остальное — передаём роутеру (твой routeRequest)
+  // 🔹 Всё остальное — передаём роутеру (routeRequest)
   routeRequest(req, res);
 });
 
