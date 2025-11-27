@@ -4,6 +4,7 @@ const menu = document.getElementById("menu");
 btn?.addEventListener("click", () => {
   if (menu) {
     if (menu.classList.contains("show")) {
+
       menu.classList.remove("show");
       btn.textContent = "Показать";
 
