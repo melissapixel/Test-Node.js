@@ -1,3 +1,12 @@
+body {
+    transition: all 0.3s;
+}
+body.theme-dark {
+    background: black; 
+    color: white;
+}
+
+
 .menu {
     opacity: 0;
     visibility: hidden;
@@ -10,6 +19,3 @@
     transform: translateY(0);
 }
 
- /* .menu {
-    display: none;
-} */
