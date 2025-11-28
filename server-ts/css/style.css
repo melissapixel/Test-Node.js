@@ -1,4 +1,4 @@
-/* .menu {
+.menu {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
@@ -8,8 +8,8 @@
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-} */
-
- .menu {
-    display: none;
 }
+
+ /* .menu {
+    display: none;
+} */
