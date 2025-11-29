@@ -1,0 +1,74 @@
+// Показ ошибок под каждым полем
+// имя пользователя
+var username = document.getElementById("username");
+var nameError = document.getElementById("name-error");
+// емейл
+var email = document.getElementById("email");
+var emailError = document.getElementById("email-error");
+// пароль
+var password = document.getElementById("password");
+var passwordError = document.getElementById("password-error");
+// отправка
+var submit = document.getElementById("submit");
+// управление ссостоянием
+var isNameValid = false;
+var isEmailValid = false;
+var isPasswordValid = false;
+function validateName(value) {
+    if (value.trim().length >= 3) {
+        isNameValid = true;
+        nameError.style.display = "none";
+        username.classList.remove("invalid");
+    }
+    else {
+        isNameValid = false;
+        nameError.textContent = "Имя должно быть не короче 3 символов.";
+        nameError.style.display = "block";
+        username.classList.add("invalid");
+    }
+    return isNameValid;
+}
+function validateEmail(value) {
+    if (value.includes("@") && value.includes(".")) {
+        isEmailValid = true;
+        emailError.style.display = "none";
+        email.classList.remove("invalid");
+    }
+    else {
+        isEmailValid = false;
+        emailError.textContent = "Email должен содержать точку после @.";
+        emailError.style.display = "block";
+        email.classList.add("invalid");
+    }
+    return isEmailValid;
+}
+function validatePassword(value) {
+    if (value.length >= 6 && /\d/.test(value)) {
+        isPasswordValid = true;
+        passwordError.style.display = "none";
+        password.classList.remove("invalid");
+    }
+    else {
+        isPasswordValid = false;
+        passwordError.textContent = "Пароль должен быть не короче 6 символов и содержать цифру.";
+        passwordError.style.display = "block";
+        password.classList.add("invalid");
+    }
+    return isPasswordValid;
+}
+// слушаем события ввода
+username.addEventListener("input", function () {
+    validateName(username.value);
+    isFormValid();
+});
+email.addEventListener("input", function () {
+    validateEmail(email.value);
+    isFormValid();
+});
+password.addEventListener("input", function () {
+    validatePassword(password.value);
+    isFormValid();
+});
+function isFormValid() {
+    submit.disabled = !(isNameValid && isEmailValid && isPasswordValid);
+}
