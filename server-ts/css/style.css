@@ -19,3 +19,8 @@ body.theme-dark {
     transform: translateY(0);
 }
 
+
+/* form email */
+#email.invalid {
+  border: 2px solid red;
+}
