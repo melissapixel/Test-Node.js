@@ -1,0 +1,113 @@
+// Сброс формы — кнопка «Очистить всё»
+// имя пользователя
+var username = document.getElementById("username");
+var nameError = document.getElementById("name-error");
+// емейл
+var email = document.getElementById("email");
+var emailError = document.getElementById("email-error");
+// пароль
+var password = document.getElementById("password");
+var passwordError = document.getElementById("password-error");
+// очистить все поля
+var resetBtn = document.getElementById("reset");
+// отправка
+var submit = document.getElementById("submit");
+// управление ссостоянием
+var isNameValid = false;
+var isEmailValid = false;
+var isPasswordValid = false;
+// Загружаем черновик
+var savedUsername = localStorage.getItem("draft-username");
+if (savedUsername !== null) {
+    username.value = savedUsername;
+    validateName(savedUsername); // чтобы обновить ошибки и состояние
+}
+var savedEmail = localStorage.getItem("draft-email");
+if (savedEmail !== null) {
+    email.value = savedEmail;
+    validateEmail(savedEmail); // чтобы обновить ошибки и состояние
+}
+function validateName(value) {
+    if (value.trim().length >= 3) {
+        isNameValid = true;
+        nameError.style.display = "none";
+        username.classList.remove("invalid");
+    }
+    else {
+        isNameValid = false;
+        nameError.textContent = "Имя должно быть не короче 3 символов.";
+        nameError.style.display = "block";
+        username.classList.add("invalid");
+    }
+    // Сохраняем значение ПЕРЕД return
+    localStorage.setItem("draft-username", value);
+    return isNameValid;
+}
+function validateEmail(value) {
+    if (value.includes("@") && value.includes(".")) {
+        isEmailValid = true;
+        emailError.style.display = "none";
+        email.classList.remove("invalid");
+    }
+    else {
+        isEmailValid = false;
+        emailError.textContent = "Email должен содержать точку после @.";
+        emailError.style.display = "block";
+        email.classList.add("invalid");
+    }
+    localStorage.setItem("draft-email", value);
+    return isEmailValid;
+}
+function validatePassword(value) {
+    if (value.length >= 6 && /\d/.test(value)) {
+        isPasswordValid = true;
+        passwordError.style.display = "none";
+        password.classList.remove("invalid");
+    }
+    else {
+        isPasswordValid = false;
+        passwordError.textContent = "Пароль должен быть не короче 6 символов и содержать цифру.";
+        passwordError.style.display = "block";
+        password.classList.add("invalid");
+    }
+    return isPasswordValid;
+}
+// слушаем события ввода
+username.addEventListener("input", function () {
+    validateName(username.value);
+    isFormValid();
+});
+email.addEventListener("input", function () {
+    validateEmail(email.value);
+    isFormValid();
+});
+password.addEventListener("input", function () {
+    validatePassword(password.value);
+    isFormValid();
+});
+// слушаем клик по кнопке "очистить все"
+resetBtn === null || resetBtn === void 0 ? void 0 : resetBtn.addEventListener("click", function () {
+    // очищаем поля
+    username.value = "";
+    email.value = "";
+    password.value = "";
+    // скрываем все ошибки
+    nameError.style.display = "none";
+    emailError.style.display = "none";
+    passwordError.style.display = "none";
+    // убираем подчеркивание красным поля с ошибками
+    username.classList.remove("invalid");
+    email.classList.remove("invalid");
+    password.classList.remove("invalid");
+    // изменяем флаги
+    isNameValid = false;
+    isEmailValid = false;
+    isPasswordValid = false;
+    submit.disabled = true;
+    // убираем localStorage
+    localStorage.removeItem("draft-username");
+    localStorage.removeItem("draft-email");
+});
+function isFormValid() {
+    submit.disabled = !(isNameValid && isEmailValid && isPasswordValid);
+}
