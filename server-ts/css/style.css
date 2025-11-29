@@ -20,7 +20,7 @@ body.theme-dark {
 }
 
 
-/* form email */
-#email.invalid {
+/* form */
+.invalid {
   border: 2px solid red;
 }

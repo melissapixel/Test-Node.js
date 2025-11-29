@@ -1,4 +1,4 @@
-// Профессиональная валидация email
+// Валидация в реальном времени + визуальная обратная связь
 var email = document.getElementById("email");
 var submit = document.getElementById("submit");
 var emailError = document.getElementById("email-error");

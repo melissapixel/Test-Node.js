@@ -17,11 +17,16 @@
 
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis distinctio mollitia dolorum, vitae in fugit modi corporis alias sapiente, veniam voluptas soluta incidunt excepturi corrupti voluptates. Eveniet impedit eos recusandae.</p>
 
-    <form action="#">
-        <input type="email" id="email" placeholder="Email">
+        <input id="username" type="varchar" placeholder="Имя (мин. 2 символа)">
+        <div id="name-error" class="error" style="display: none; color: red;"></div>
+        <br>
+        <input id="email" type="email" placeholder="Email">
         <div id="email-error" class="error" style="display: none; color: red;"></div>
-        <button id="submit" disabled>Войти</button>  <!-- кнопка изначально неактивна. -->
-    </form>
+        <br>
+        <input id="password" type="password" placeholder="Пароль (мин. 6 символов, с цифрой)">
+        <div id="password-error" class="error" style="display: none; color: red;"></div>
+        <br>
+        <button id="submit" disabled>Зарегистрироваться</button> <!-- кнопка изначально неактивна -->
 
 
     <!-- Подключаем скомпилированный JS -->
@@ -30,6 +35,6 @@
     <!-- theme -->
     <script src="task15.js"></script>
     <!-- form -->
-    <script src="task19.js"></script>
+    <script src="task20.js"></script>
 </body>
 </html>
