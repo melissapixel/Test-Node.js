@@ -81,7 +81,7 @@ function validatePassword(value: string): boolean {
 
 // слушаем события ввода для валидации
 username.addEventListener("input", () => { 
-    // 1. Очищаем значение
+    // 1. Очищаем значение от ненужных символов
   let cleanValue = username.value.replace(/[^а-яА-Яa-zA-Z\s]/g, "");
   // 2. Обновляем поле
   username.value = cleanValue;
@@ -90,7 +90,6 @@ username.addEventListener("input", () => {
   isFormValid();
 });
 email.addEventListener("input", () => {
-    validateEmail(email.value);
     isFormValid();
 });
 password.addEventListener("input", () => { 
