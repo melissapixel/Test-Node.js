@@ -24,3 +24,7 @@ body.theme-dark {
 .invalid {
   border: 2px solid red;
 }
+input.focus {
+  border: 2px solid #007bff; /* синяя рамка */
+  outline: none;
+}
