@@ -21,10 +21,14 @@ body.theme-dark {
 
 
 /* form */
-.invalid {
+input.invalid {
   border: 2px solid red;
 }
 input.focus {
   border: 2px solid #007bff; /* синяя рамка */
+  outline: none;
+}
+input.valid {
+  border: 2px solid #00ff62; /* синяя рамка */
   outline: none;
 }
